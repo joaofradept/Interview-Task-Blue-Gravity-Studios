@@ -44,6 +44,15 @@ TagManager:
   - name: Floor
     uniqueID: 2482377989
     locked: 0
+  - name: Walls
+    uniqueID: 526236883
+    locked: 0
   - name: Player
     uniqueID: 3398580569
+    locked: 0
+  - name: Objects
+    uniqueID: 4212392861
+    locked: 0
+  - name: In-Game UI
+    uniqueID: 4008695659
     locked: 0
