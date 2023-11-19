@@ -114,10 +114,12 @@ public class SpritesheetAnimator : MonoBehaviour
             spriteRenderer.sprite = currentSpriteGroup[currentAnimationIndex];
 
             // Wait specified time
-            yield return new WaitForSeconds(timeBetweenSprites);
+            yield return new WaitForSeconds(time);
 
             // Go to next sprite
             currentAnimationIndex++;
         }
     }
+
+    static float time;
 }

@@ -52,10 +52,13 @@ public class PlayerBelongings : MonoBehaviour
     // Equip purchasable
     public void EquipPurchasable(Purchasable p)
     {
+        // Destroy current
         if (equipment) Destroy(equipment.gameObject);
 
+        // Instantiate new
         equipment = Instantiate(p, equipmentParent);
 
+        // Invoke action to alert that equipment was changed
         onEquipmentChanged?.Invoke(equipment);
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Purchasable : MonoBehaviour
 {
-
     [SerializeField] string title;
     [SerializeField] string description;
     [SerializeField] int marketValue;

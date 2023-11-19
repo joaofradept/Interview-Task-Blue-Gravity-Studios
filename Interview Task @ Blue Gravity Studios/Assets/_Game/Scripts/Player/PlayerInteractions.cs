@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerInteractions : MonoBehaviour
 {
+    // States an interaction can have
     enum State { NONE, FOUND, INTERACTING }
 
+    // 'E' icon when interactable is found
     [SerializeField] GameObject interactIcon;
 
     State currentState;
@@ -38,6 +40,7 @@ public class PlayerInteractions : MonoBehaviour
         }
     }
 
+    // Look for interactables close by
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var interactable
@@ -54,6 +57,7 @@ public class PlayerInteractions : MonoBehaviour
         }
     }
 
+    // Check if is no longer near interactable
     private void OnTriggerExit2D(Collider2D collision)
     {
         var interactable

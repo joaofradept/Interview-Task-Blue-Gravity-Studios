@@ -15,6 +15,7 @@ public class EquippedPanel : SimplePanel
         OnEquipmentUpdated(null);
     }
 
+    // Update UI with given equipment
     public void OnEquipmentUpdated(Purchasable equipment)
     {
         if (equipment != null)
@@ -29,6 +30,7 @@ public class EquippedPanel : SimplePanel
 
     void OnEnable()
     {
+        // When equipment is changed, update UI
         playerBelongings.onEquipmentChanged += OnEquipmentUpdated;
     }
 

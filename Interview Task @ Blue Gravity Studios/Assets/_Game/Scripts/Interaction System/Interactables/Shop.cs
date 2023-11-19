@@ -26,7 +26,10 @@ public class Shop : Interactable
 
         loadedPlayer = p;
 
+        // Load shop's UI with the current shop
         shopUI.LoadShop(this);
+
+        // Show it
         shopUI.Show();
     }
 
@@ -38,12 +41,16 @@ public class Shop : Interactable
 
         if (loadedPlayer.PlayerWallet.TryWidthdraw(cost))
         {
+            // Add money to shop's wallet
             ShopWallet.AddMoney(cost);
 
+            // Remove purchasable from shop
             Purchasables.RemoveFromList(purchasable);
 
+            // Reload UI
             shopUI.LoadShop(this);
 
+            // Add purchased item to player's backpack
             loadedPlayer.Belongings.AddToBackpack(purchasable);
 
             return true;

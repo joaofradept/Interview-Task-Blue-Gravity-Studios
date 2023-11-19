@@ -83,6 +83,7 @@ public class InventoryPanel : SimplePanel
             Destroy(item.gameObject);
     }
 
+    // Load backpack with purchasables
     void LoadBackpack()
     {
         DestroyUIItems();
