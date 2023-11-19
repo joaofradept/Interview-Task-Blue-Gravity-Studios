@@ -19,9 +19,9 @@ public class ShopPanel : SimplePanel
     List<ItemUI> loadedUIItems;
     int currentSelectionIndex; // -1 if no selection
 
-    public void SelectPurchasable(int index)
+    public void SelectItem(int index)
     {
-        DeselectCurrentPurchasable();
+        DeselectCurrentItem();
 
         currentSelectionIndex = index;
 
@@ -49,7 +49,7 @@ public class ShopPanel : SimplePanel
     }
 
     // Also called in the Inspector (See gameobject 'Items')
-    public void DeselectCurrentPurchasable()
+    public void DeselectCurrentItem()
     {
         noSelectionOverlay.SetActive(true);
 
@@ -62,6 +62,15 @@ public class ShopPanel : SimplePanel
 
             currentSelectionIndex = -1;
         }
+    }
+
+    public override void Hide()
+    {
+        base.Hide();
+
+        loadedShop?.ExitShop();
+
+        loadedShop = null;
     }
 
     // Destroy current UI items (if exist)
@@ -89,13 +98,13 @@ public class ShopPanel : SimplePanel
 
             var UIItem = Instantiate(shopItemPrefab, shopItemParent);
 
-            UIItem.Initialize(p, SelectPurchasable, indexInList);
+            UIItem.Initialize(p, SelectItem, indexInList);
 
             loadedUIItems.Add(UIItem);
         }
 
         currentSelectionIndex = -1;
-        DeselectCurrentPurchasable();
+        DeselectCurrentItem();
 
         // If there are no items in list,
         // show empty shop text.

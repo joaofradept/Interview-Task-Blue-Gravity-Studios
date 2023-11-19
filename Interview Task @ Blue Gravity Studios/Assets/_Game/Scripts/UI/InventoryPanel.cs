@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryPanel : SimplePanel
 {
@@ -11,9 +12,13 @@ public class InventoryPanel : SimplePanel
     [SerializeField] TMP_Text objectsName;
     [SerializeField] GameObject objectInfoArea;
     [SerializeField] Animator sellResultAnim;
+    [SerializeField] TMP_Text purchasableSellValue;
+    [SerializeField] Button sellButton;
 
     List<ItemUI> loadedUIItems;
     int currentSelectionIndex; // -1 if no selection
+
+    Shop enteredShop;
 
     public override void Show()
     {
@@ -51,6 +56,8 @@ public class InventoryPanel : SimplePanel
             = playerBelongings.Backpack.List[index];
 
         objectsName.text = selectedItem.Title;
+
+        purchasableSellValue.text = (selectedItem.MarketValue / 2).ToString();
     }
 
     // Also called in the Inspector (See gameobject 'Items')
@@ -101,6 +108,9 @@ public class InventoryPanel : SimplePanel
 
             loadedUIItems.Add(UIItem);
         }
+
+        currentSelectionIndex = -1;
+        DeselectCurrentItem();
     }
 
     // Called in the Inspector (See gameobject 'Equip Button')
@@ -110,5 +120,43 @@ public class InventoryPanel : SimplePanel
             = playerBelongings.Backpack.List[currentSelectionIndex];
 
         playerBelongings.EquipPurchasable(selectedItem);
+    }
+
+    // Called in the Inspector (See gameobject 'Buy Button')
+    public void TrySellSelected()
+    {
+        Purchasable selectedItem
+            = playerBelongings.Backpack.List[currentSelectionIndex];
+
+        if (enteredShop.TryBuyFromPlayer(selectedItem))
+            sellResultAnim.Play("Success");
+        else
+            sellResultAnim.Play("NoMoney");
+    }
+
+    // Enable sell button
+    public void EnableSellAction(Shop shop, Player player)
+    {
+        enteredShop = shop;
+        sellButton.interactable = true;
+    }
+
+    // Disable sell button
+    public void DisableSellAction(Shop shop, Player player)
+    {
+        enteredShop = null;
+        sellButton.interactable = false;
+    }
+
+    private void OnEnable()
+    {
+        Shop.onPlayerEnteredShop += EnableSellAction;
+        Shop.onPlayerExitedShop += DisableSellAction;
+    }
+
+    private void OnDisable()
+    {
+        Shop.onPlayerEnteredShop -= EnableSellAction;
+        Shop.onPlayerExitedShop -= DisableSellAction;
     }
 }

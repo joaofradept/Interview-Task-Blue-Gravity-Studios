@@ -37,16 +37,14 @@ public class PlayerBelongings : MonoBehaviour
     }
 
     // Remove purchasable from backpack
-    public bool RemoveFromBackpack(Purchasable item)
+    public void RemoveFromBackpack(Purchasable item)
     {
-        if (Backpack.AddToList(item))
-        {
-            onBackpackChanged?.Invoke();
+        // Unequip item if equipped
+        if (equipment == item) EquipPurchasable(null);
 
-            return true;
-        }
+        Backpack.RemoveFromList(item);
 
-        return false;
+        onBackpackChanged?.Invoke();
     }
 
     // Equip purchasable
