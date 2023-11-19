@@ -6,6 +6,8 @@ public class SimplePanel : MonoBehaviour
 {
     Animator anim;
 
+    bool isVisible;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -13,11 +15,19 @@ public class SimplePanel : MonoBehaviour
 
     public virtual void Show()
     {
+        if (isVisible) return;
+
         anim.SetTrigger("Show");
+
+        isVisible = true;
     }
 
     public virtual void Hide()
     {
+        if (!isVisible) return;
+
         anim.SetTrigger("Hide");
+
+        isVisible = false;
     }
 }
