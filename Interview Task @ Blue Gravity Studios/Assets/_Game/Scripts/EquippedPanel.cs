@@ -28,6 +28,11 @@ public class EquippedPanel : SimplePanel
             equipmentItem.SetActive(false);
     }
 
+    public void Unequip()
+    {
+        playerBelongings.EquipPurchasable(null);
+    }
+
     void OnEnable()
     {
         // When equipment is changed, update UI

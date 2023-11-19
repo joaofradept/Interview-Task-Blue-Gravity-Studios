@@ -50,13 +50,17 @@ public class PlayerBelongings : MonoBehaviour
     }
 
     // Equip purchasable
+    // Pass null to unequip
     public void EquipPurchasable(Purchasable p)
     {
         // Destroy current
         if (equipment) Destroy(equipment.gameObject);
 
         // Instantiate new
-        equipment = Instantiate(p, equipmentParent);
+        if (p != null)
+            equipment = Instantiate(p, equipmentParent);
+        else
+            equipment = null;
 
         // Invoke action to alert that equipment was changed
         onEquipmentChanged?.Invoke(equipment);
