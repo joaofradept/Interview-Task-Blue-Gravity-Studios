@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour, IInteractable
 {
-    public GameObject interactIcon;
-
-    void Start()
-    {
-        interactIcon.SetActive(false);
-    }
 
     public virtual void OnInteract(Player p)
     {
@@ -17,12 +11,10 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public virtual void OnInteractableFound()
     {
-        interactIcon.SetActive(true);
     }
 
     public virtual void OnInteractableLost()
     {
-        interactIcon.SetActive(false);
     }
 
     public virtual void OnInteractableStay()

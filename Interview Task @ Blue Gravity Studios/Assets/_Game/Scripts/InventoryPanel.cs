@@ -6,15 +6,13 @@ using UnityEngine;
 public class InventoryPanel : SimplePanel
 {
     [SerializeField] PlayerBelongings playerBelongings;
-    [SerializeField] InventoryItem inventoryItemPrefab;
-    [SerializeField] Transform inventoryItemParent;
+    [SerializeField] ItemUI itemUIPrefab;
+    [SerializeField] Transform itemUIParent;
     [SerializeField] TMP_Text objectsName;
-    [SerializeField] TMP_Text objectsDescription;
-    [SerializeField] GameObject noSelectionOverlay;
-    [SerializeField] Animator purchaseResultAnim;
-    [SerializeField] TMP_Text emptyText;
+    [SerializeField] GameObject objectInfoArea;
+    [SerializeField] Animator sellResultAnim;
 
-    List<InventoryItem> loadedUIItems;
+    List<ItemUI> loadedUIItems;
     int currentSelectionIndex; // -1 if no selection
 
     public override void Show()
@@ -22,6 +20,8 @@ public class InventoryPanel : SimplePanel
         base.Show();
 
         playerBelongings.onBackpackChanged += LoadBackpack;
+
+        objectInfoArea.SetActive(false);
 
         LoadBackpack();
     }
@@ -39,20 +39,18 @@ public class InventoryPanel : SimplePanel
 
         currentSelectionIndex = index;
 
-        noSelectionOverlay.SetActive(false);
+        objectInfoArea.SetActive(true);
 
-        Item selectedItem
+        Purchasable selectedItem
             = playerBelongings.Backpack.List[index];
 
         objectsName.text = selectedItem.Title;
-        objectsDescription.text
-            = selectedItem.Description;
     }
 
     // Also called in the Inspector (See gameobject 'Items')
     public void DeselectCurrentItem()
     {
-        noSelectionOverlay.SetActive(true);
+        objectInfoArea.SetActive(false);
 
         if (currentSelectionIndex > -1)
         {
@@ -65,16 +63,27 @@ public class InventoryPanel : SimplePanel
         }
     }
 
+    // Destroy current UI items (if exist)
+    void DestroyUIItems()
+    {
+        if (loadedUIItems == null) return;
+
+        foreach (var item in loadedUIItems)
+            Destroy(item.gameObject);
+    }
+
     void LoadBackpack()
     {
-        loadedUIItems = new List<InventoryItem>();
+        DestroyUIItems();
+
+        loadedUIItems = new List<ItemUI>();
 
         int indexInList = -1;
         foreach (var p in playerBelongings.Backpack.List)
         {
             ++indexInList;
 
-            var UIItem = Instantiate(inventoryItemPrefab, inventoryItemParent);
+            var UIItem = Instantiate(itemUIPrefab, itemUIParent);
 
             UIItem.Initialize(p, SelectItem, indexInList);
 

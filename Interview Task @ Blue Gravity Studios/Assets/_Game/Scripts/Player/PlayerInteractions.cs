@@ -6,6 +6,8 @@ public class PlayerInteractions : MonoBehaviour
 {
     enum State { NONE, FOUND, INTERACTING }
 
+    [SerializeField] GameObject interactIcon;
+
     State currentState;
     Interactable currentInteractable;
 
@@ -19,6 +21,8 @@ public class PlayerInteractions : MonoBehaviour
     private void Start()
     {
         currentState = State.NONE;
+
+        interactIcon.SetActive(false);
     }
 
     void Update()
@@ -44,6 +48,8 @@ public class PlayerInteractions : MonoBehaviour
             currentInteractable = interactable;
             currentState = State.FOUND;
 
+            interactIcon.SetActive(true);
+
             currentInteractable.OnInteractableFound();
         }
     }
@@ -58,6 +64,8 @@ public class PlayerInteractions : MonoBehaviour
         {
             currentInteractable = null;
             currentState = State.NONE;
+
+            interactIcon.SetActive(false);
 
             interactable.OnInteractableLost();
         }

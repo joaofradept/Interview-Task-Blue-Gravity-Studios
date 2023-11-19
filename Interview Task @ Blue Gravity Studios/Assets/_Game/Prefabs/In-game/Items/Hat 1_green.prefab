@@ -9,28 +9,32 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 477577694599821428, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
       propertyPath: m_Name
-      value: Hat 2
+      value: Hat 1_green
       objectReference: {fileID: 0}
     - target: {fileID: 477577694599821433, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
       propertyPath: title
-      value: Hat 2
+      value: Hat 1 Green
       objectReference: {fileID: 0}
     - target: {fileID: 477577694599821433, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
       propertyPath: description
-      value: A very cool wizard hat.
-      objectReference: {fileID: 0}
-    - target: {fileID: 477577694599821433, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
-      propertyPath: marketValue
-      value: 50
+      value: A very cool hat. Green colour.
       objectReference: {fileID: 0}
     - target: {fileID: 477577694599821433, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
       propertyPath: initialMarketValue
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 477577694599821434, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -2000028515, guid: 0e76ad77b131c6a4aacdada8d395a86d, type: 3}
+      propertyPath: m_Color.b
+      value: 0.24213827
+      objectReference: {fileID: 0}
+    - target: {fileID: 477577694599821434, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 477577694599821434, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
+      propertyPath: m_Color.r
+      value: 0.33481628
+      objectReference: {fileID: 0}
     - target: {fileID: 477577694599821435, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
       propertyPath: m_RootOrder
       value: 0

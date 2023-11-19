@@ -3,6 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Purchasable", menuName = "Profiles/Purchasable")]
 public class PurchasableProfile : ScriptableObject
 {
-    public Item item;
+    public Purchasable item;
     public int price;
 }

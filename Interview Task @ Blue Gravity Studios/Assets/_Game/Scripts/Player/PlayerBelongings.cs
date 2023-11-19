@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class PlayerBelongings : MonoBehaviour
 {
-    [SerializeField] Item[] initialBackpackItems;
+    [SerializeField] Purchasable[] initialBackpackItems;
     [SerializeField] int backpackItemLimit;
 
-    public Inventory<Item> Backpack { get; private set; }
+    public Inventory<Purchasable> Backpack { get; private set; }
 
     public Action onBackpackChanged;
 
     private void Awake()
     {
-        Backpack = new Inventory<Item>
+        Backpack = new Inventory<Purchasable>
             (initialBackpackItems, backpackItemLimit);
     }
 
-    public bool AddToBackpack(Item item)
+    public bool AddToBackpack(Purchasable item)
     {
         if (Backpack.AddToList(item))
         {
@@ -30,7 +30,7 @@ public class PlayerBelongings : MonoBehaviour
         return false;
     }
 
-    public void EquipItem(Item item)
+    public void EquipItem(Purchasable item)
     {
 
     }

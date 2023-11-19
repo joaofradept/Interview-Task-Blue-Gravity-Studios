@@ -100,6 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Hat 1
   description: A very cool hat.
+  marketValue: 10
+  type: 0
 --- !u!95 &-870627475714390243
 Animator:
   serializedVersion: 4

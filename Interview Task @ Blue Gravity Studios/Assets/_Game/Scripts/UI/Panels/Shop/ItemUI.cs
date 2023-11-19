@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryItem : MonoBehaviour
+public class ItemUI : MonoBehaviour
 {
     [SerializeField] Image selectionOverlay;
     [SerializeField] Image image;
@@ -19,14 +19,12 @@ public class InventoryItem : MonoBehaviour
         button = GetComponent<Button>();
     }
 
-    public void Initialize(Item item,
+    public void Initialize(Purchasable item,
         Action<int> onSelectItem, int indexInList)
     {
-        image.sprite = item.Image;
-
-        var instantiatedItem = Instantiate(item, transform);
-
-        instantiatedItem.transform.SetAsFirstSibling();
+        SpriteRenderer spriteRenderer = item.SpriteRenderer;
+        image.sprite = spriteRenderer.sprite;
+        image.color = spriteRenderer.color;
 
         this.onSelectItem = onSelectItem;
         this.indexInList = indexInList;
@@ -34,6 +32,7 @@ public class InventoryItem : MonoBehaviour
         button.onClick.AddListener(delegate { Select(); });
     }
 
+    // Show button as selected
     void Select()
     {
         onSelectItem.Invoke(indexInList);
@@ -41,6 +40,7 @@ public class InventoryItem : MonoBehaviour
         selectionOverlay.enabled = true;
     }
 
+    // Show button as deselected
     public void Deselect()
     {
         selectionOverlay.enabled = false;

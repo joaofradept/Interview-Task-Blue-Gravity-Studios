@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ShopPanel : SimplePanel
 {
-    [SerializeField] ShopItem shopItemPrefab;
+    [SerializeField] ItemUI shopItemPrefab;
     [SerializeField] Transform shopItemParent;
     [SerializeField] TMP_Text objectsName;
     [SerializeField] TMP_Text objectsDescription;
@@ -16,30 +16,30 @@ public class ShopPanel : SimplePanel
 
     Shop loadedShop;
 
-    List<ShopItem> loadedUIItems;
+    List<ItemUI> loadedUIItems;
     int currentSelectionIndex; // -1 if no selection
 
     public void SelectPurchasable(int index)
     {
-        DeselectCurrentItem();
+        DeselectCurrentPurchasable();
 
         currentSelectionIndex = index;
 
         noSelectionOverlay.SetActive(false);
 
-        PurchasableProfile selectedPurchasable
+        Purchasable selectedPurchasable
             = loadedShop.Purchasables.List[index];
 
-        objectsName.text = selectedPurchasable.item.Title;
+        objectsName.text = selectedPurchasable.Title;
         objectsDescription.text
-            = selectedPurchasable.item.Description;
-        objectsCost.text = selectedPurchasable.price.ToString();
+            = selectedPurchasable.Description;
+        objectsCost.text = selectedPurchasable.MarketValue.ToString();
     }
 
     // Called in the Inspector (See gameobject 'Buy Button')
     public void TryBuySelected()
     {
-        PurchasableProfile selectedPurchasable
+        Purchasable selectedPurchasable
             = loadedShop.Purchasables.List[currentSelectionIndex];
 
         if (loadedShop.TryProcessPurchase(selectedPurchasable))
@@ -49,7 +49,7 @@ public class ShopPanel : SimplePanel
     }
 
     // Also called in the Inspector (See gameobject 'Items')
-    public void DeselectCurrentItem()
+    public void DeselectCurrentPurchasable()
     {
         noSelectionOverlay.SetActive(true);
 
@@ -80,7 +80,7 @@ public class ShopPanel : SimplePanel
 
         loadedShop = shop;
 
-        loadedUIItems = new List<ShopItem>();
+        loadedUIItems = new List<ItemUI>();
 
         int indexInList = -1;
         foreach (var p in shop.Purchasables.List)
@@ -89,13 +89,13 @@ public class ShopPanel : SimplePanel
 
             var UIItem = Instantiate(shopItemPrefab, shopItemParent);
 
-            UIItem.Initialize(p.item, SelectPurchasable, indexInList);
+            UIItem.Initialize(p, SelectPurchasable, indexInList);
 
             loadedUIItems.Add(UIItem);
         }
 
         currentSelectionIndex = -1;
-        DeselectCurrentItem();
+        DeselectCurrentPurchasable();
 
         // If there are no items in list,
         // show empty shop text.

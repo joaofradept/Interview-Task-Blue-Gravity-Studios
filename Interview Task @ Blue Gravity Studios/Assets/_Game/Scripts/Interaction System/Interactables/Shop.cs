@@ -5,16 +5,16 @@ using UnityEngine;
 public class Shop : Interactable
 {
     [SerializeField] ShopPanel shopUI;
-    [SerializeField] PurchasableProfile[] initialPurchasables;
+    [SerializeField] Purchasable[] initialPurchasables;
 
     public Wallet ShopWallet { get; private set; }
-    public Inventory<PurchasableProfile> Purchasables { get; private set; }
+    public Inventory<Purchasable> Purchasables { get; private set; }
 
     Player loadedPlayer;
 
     private void Awake()
     {
-        Purchasables = new Inventory<PurchasableProfile>
+        Purchasables = new Inventory<Purchasable>
             (initialPurchasables);
 
         ShopWallet = GetComponent<Wallet>();
@@ -31,9 +31,9 @@ public class Shop : Interactable
     }
 
     public bool TryProcessPurchase
-        (PurchasableProfile purchasable)
+        (Purchasable purchasable)
     {
-        int cost = purchasable.price;
+        int cost = purchasable.MarketValue;
 
         if (loadedPlayer.PlayerWallet.TryWidthdraw(cost))
         {
@@ -42,6 +42,8 @@ public class Shop : Interactable
             Purchasables.RemoveFromList(purchasable);
 
             shopUI.LoadShop(this);
+
+            loadedPlayer.Belongings.AddToBackpack(purchasable);
 
             return true;
         }
