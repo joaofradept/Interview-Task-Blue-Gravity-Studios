@@ -8,6 +8,7 @@ public class SpritesheetAnimator : MonoBehaviour
     [SerializeField] string spriteName;
     [SerializeField] float timeBetweenSprites;
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] SpriteRenderer spriteRenderer_2;
 
     [Header("Use commas to separate indexes.")]
     [Header("Indexes correspond to frames in the spritesheet.")]
@@ -114,6 +115,10 @@ public class SpritesheetAnimator : MonoBehaviour
 
             // Set renderer's sprite
             spriteRenderer.sprite = currentSpriteGroup[currentAnimationIndex];
+            
+            // Apply to second renderer (if exists)
+            if (spriteRenderer_2)
+                spriteRenderer_2.sprite = currentSpriteGroup[currentAnimationIndex];
 
             // Wait specified time
             yield return new WaitForSeconds(timeBetweenSprites);
