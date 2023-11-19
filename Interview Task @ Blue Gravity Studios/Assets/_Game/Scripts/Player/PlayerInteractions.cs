@@ -9,6 +9,13 @@ public class PlayerInteractions : MonoBehaviour
     State currentState;
     Interactable currentInteractable;
 
+    Player player;
+
+    private void Awake()
+    {
+        player = GetComponent<Player>();
+    }
+
     private void Start()
     {
         currentState = State.NONE;
@@ -22,7 +29,7 @@ public class PlayerInteractions : MonoBehaviour
             {
                 currentState = State.INTERACTING;
 
-                currentInteractable.OnInteract();
+                currentInteractable.OnInteract(player);
             }
         }
     }

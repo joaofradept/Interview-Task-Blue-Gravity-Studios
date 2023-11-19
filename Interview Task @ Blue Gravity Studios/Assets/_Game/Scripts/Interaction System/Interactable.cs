@@ -11,32 +11,31 @@ public class Interactable : MonoBehaviour, IInteractable
         interactIcon.SetActive(false);
     }
 
-    public void OnInteract()
+    public virtual void OnInteract(Player p)
     {
-        throw new System.NotImplementedException();
     }
 
-    public void OnInteractableFound()
+    public virtual void OnInteractableFound()
     {
         interactIcon.SetActive(true);
     }
 
-    public void OnInteractableLost()
+    public virtual void OnInteractableLost()
     {
         interactIcon.SetActive(false);
     }
 
-    public void OnInteractableStay()
+    public virtual void OnInteractableStay()
     {
         throw new System.NotImplementedException();
     }
 
-    public void OnInteractStay(PlayerInteractions p)
+    public virtual void OnInteractStay(Player p)
     {
         throw new System.NotImplementedException();
     }
 
-    public void OnInteractStop()
+    public virtual void OnInteractStop()
     {
         throw new System.NotImplementedException();
     }

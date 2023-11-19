@@ -10,9 +10,9 @@ public interface IInteractable
 
     void OnInteractableStay();
 
-    void OnInteract();
+    void OnInteract(Player p);
 
-    void OnInteractStay(PlayerInteractions p);
+    void OnInteractStay(Player p);
 
     void OnInteractStop();
 }

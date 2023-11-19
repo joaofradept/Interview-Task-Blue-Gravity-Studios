@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -1497,9 +1497,9 @@ TextureImporter:
       char_a_p1_0bas_humn_v01_12: -401026180
       char_a_p1_0bas_humn_v01_16: -1330250785
       char_a_p1_0bas_humn_v01_30: -1821784620
-      char_a_p1_0bas_humn_v01_10: -1547389688
-      char_a_p1_0bas_humn_v01_41: 1410710131
       char_a_p1_0bas_humn_v01_52: -2063103633
+      char_a_p1_0bas_humn_v01_41: 1410710131
+      char_a_p1_0bas_humn_v01_10: -1547389688
       char_a_p1_0bas_humn_v01_18: 1221607402
       char_a_p1_0bas_humn_v01_49: -894473170
       char_a_p1_0bas_humn_v01_40: 1485902231
