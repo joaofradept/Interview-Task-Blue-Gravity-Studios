@@ -20,14 +20,8 @@ public class SpritesheetAnimator : MonoBehaviour
     [Tooltip("Indexes for the Walk Right animation.")]
     public string sWalkRightAnimIndexes;
 
-    [Tooltip("Indexes for the Idle Up animation.")]
-    public string sIdleUpAnimIndexes;
-    [Tooltip("Indexes for the Idle Down animation.")]
-    public string sIdleDownAnimIndexes;
-    [Tooltip("Indexes for the Idle Left animation.")]
-    public string sIdleLeftAnimIndexes;
-    [Tooltip("Indexes for the Idle Right animation.")]
-    public string sIdleRightAnimIndexes;
+    [Tooltip("Indexes for the Idle animation.")]
+    public string sIdleAnimIndexes;
 
     SpritesheetLoader spritesheetLoader;
 
@@ -36,10 +30,7 @@ public class SpritesheetAnimator : MonoBehaviour
     Sprite[] walkLeft;
     Sprite[] walkRight;
 
-    Sprite[] idleUp;
-    Sprite[] idleDown;
-    Sprite[] idleLeft;
-    Sprite[] idleRight;
+    Sprite[] idle;
 
     // I prefered to write this script instead of
     // using Animator State Machine because there's
@@ -47,7 +38,7 @@ public class SpritesheetAnimator : MonoBehaviour
     // (in what concerns the organisation of their animations
     // inside the spritesheets)
     // in the downloaded asset package
-    void Start()
+    void Awake()
     {
         spritesheetLoader = new SpritesheetLoader(spriteName);
 
@@ -61,10 +52,7 @@ public class SpritesheetAnimator : MonoBehaviour
         walkRight = spritesheetLoader.GetSpriteArrayFromIndexes(sWalkRightAnimIndexes);
 
         // Idle sprites
-        idleUp = spritesheetLoader.GetSpriteArrayFromIndexes(sIdleUpAnimIndexes);
-        idleDown = spritesheetLoader.GetSpriteArrayFromIndexes(sIdleDownAnimIndexes);
-        idleLeft = spritesheetLoader.GetSpriteArrayFromIndexes(sIdleLeftAnimIndexes);
-        idleRight = spritesheetLoader.GetSpriteArrayFromIndexes(sIdleRightAnimIndexes);
+        idle = spritesheetLoader.GetSpriteArrayFromIndexes(sIdleAnimIndexes);
     }
 
     void SetAnimation(ref Sprite[] spriteGroup)
@@ -95,24 +83,9 @@ public class SpritesheetAnimator : MonoBehaviour
         SetAnimation(ref walkRight);
     }
 
-    public void IdleUp()
+    public void Idle()
     {
-        SetAnimation(ref idleUp);
-    }
-
-    public void IdleDown()
-    {
-        SetAnimation(ref idleDown);
-    }
-
-    public void IdleLeft()
-    {
-        SetAnimation(ref idleLeft);
-    }
-
-    public void IdleRight()
-    {
-        SetAnimation(ref idleRight);
+        SetAnimation(ref idle);
     }
 
     int currentAnimationIndex;
@@ -120,8 +93,8 @@ public class SpritesheetAnimator : MonoBehaviour
 
     public void StartAnimation()
     {
-        // Start with Idle Down
-        IdleDown();
+        // Start with Idle
+        Idle();
 
         // Start animating
         StartCoroutine(Animation_SpriteRenderer());

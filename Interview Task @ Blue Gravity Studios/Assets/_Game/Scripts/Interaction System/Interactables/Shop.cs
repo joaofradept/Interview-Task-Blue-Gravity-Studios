@@ -30,6 +30,7 @@ public class Shop : Interactable
         shopUI.Show();
     }
 
+    // Try to process purchase
     public bool TryProcessPurchase
         (Purchasable purchasable)
     {

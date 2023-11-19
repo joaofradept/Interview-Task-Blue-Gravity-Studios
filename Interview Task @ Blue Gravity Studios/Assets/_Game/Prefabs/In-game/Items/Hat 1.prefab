@@ -101,7 +101,7 @@ MonoBehaviour:
   title: Hat 1
   description: A very cool hat.
   marketValue: 10
-  type: 0
+  wearType: 0
 --- !u!114 &2288342435916499663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +121,4 @@ MonoBehaviour:
   sWalkDownAnimIndexes: 32,33,34,35,36,37
   sWalkLeftAnimIndexes: 56,57,58,59,60,61
   sWalkRightAnimIndexes: 48,49,50,51,52,53
-  sIdleUpAnimIndexes: 8
-  sIdleDownAnimIndexes: 0
-  sIdleLeftAnimIndexes: 24
-  sIdleRightAnimIndexes: 16
+  sIdleAnimIndexes: 0

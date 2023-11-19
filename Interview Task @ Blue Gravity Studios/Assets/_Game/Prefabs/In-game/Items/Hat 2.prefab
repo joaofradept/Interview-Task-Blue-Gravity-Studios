@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 477577694599821433, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
       propertyPath: marketValue
-      value: 50
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 477577694599821433, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
       propertyPath: initialMarketValue
@@ -74,6 +74,10 @@ PrefabInstance:
     - target: {fileID: 477577694599821435, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288342435916499663, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
+      propertyPath: spriteName
+      value: char_a_p1_5hat_pnty_v04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}

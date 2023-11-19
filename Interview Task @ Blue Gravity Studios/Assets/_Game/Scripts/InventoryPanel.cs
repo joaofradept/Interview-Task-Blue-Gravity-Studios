@@ -19,10 +19,13 @@ public class InventoryPanel : SimplePanel
     {
         base.Show();
 
+        // If backpack is updated, UI must reload backpack items
         playerBelongings.onBackpackChanged += LoadBackpack;
 
+        // Hide item information panel
         objectInfoArea.SetActive(false);
 
+        // Load items from backpack
         LoadBackpack();
     }
 
@@ -33,12 +36,15 @@ public class InventoryPanel : SimplePanel
         playerBelongings.onBackpackChanged -= LoadBackpack;
     }
 
+    // Select item and show its information
     public void SelectItem(int index)
     {
+        // Deselect current item
         DeselectCurrentItem();
 
         currentSelectionIndex = index;
 
+        // Show item information panel
         objectInfoArea.SetActive(true);
 
         Purchasable selectedItem
@@ -50,15 +56,20 @@ public class InventoryPanel : SimplePanel
     // Also called in the Inspector (See gameobject 'Items')
     public void DeselectCurrentItem()
     {
+        // Hide item information panel
         objectInfoArea.SetActive(false);
 
+        // Deselect current item if there is one selected
         if (currentSelectionIndex > -1)
         {
+            // Get selected item
             var selectedItem
                 = loadedUIItems[currentSelectionIndex];
 
+            // Deselect it
             selectedItem.Deselect();
 
+            // Set selection as none
             currentSelectionIndex = -1;
         }
     }

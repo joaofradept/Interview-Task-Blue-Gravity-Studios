@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 movementInput;
     Vector2 movement;
-    Vector2 lastMovement;
 
     private void Awake()
     {
@@ -21,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        // Initialize spritesheets.
+        // No need to pass arguments
         GetSpritesheets(null);
     }
 
@@ -32,9 +33,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (movementInput.x != 0)
         {
+            // Set movement in X axis
             movement.x = movementInput.x;
             movement.y = 0;
 
+            // Apply animations
             if (movementInput.x > 0)
                 WalkRight();
             else
@@ -42,9 +45,11 @@ public class PlayerMovement : MonoBehaviour
         }
         if (movementInput.y != 0)
         {
+            // Set movement in Y axis
             movement.y = movementInput.y;
             movement.x = 0;
 
+            // Apply animations
             if (movementInput.y > 0)
                 WalkUp();
             else
@@ -52,17 +57,8 @@ public class PlayerMovement : MonoBehaviour
         }
         if (movementInput.sqrMagnitude <= 0.01f)
         {
-            lastMovement = movement;
-
-            if (lastMovement.x > 0)
-                IdleRight();
-            else
-                IdleLeft();
-
-            if (lastMovement.y > 0)
-                IdleUp();
-            else
-                IdleDown();
+            // Apply animations
+            Idle();
 
             movement.x = 0;
             movement.y = 0;
@@ -77,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
+        // If equipment changes, spritesheets must be reloaded
+        // so to include all equipped spritesheet animations too
         playerBelongings.onEquipmentChanged += GetSpritesheets;
     }
 
@@ -89,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Get spritesheets in children (also the player's)
     // This shall be called whenever spritesheets are added/removed
-    void GetSpritesheets(Purchasable[] ps)
+    void GetSpritesheets(Purchasable p)
     {
         spritesheetsAnim
             = GetComponentsInChildren<SpritesheetAnimator>();
@@ -132,35 +130,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void IdleUp()
+    void Idle()
     {
         foreach (var item in spritesheetsAnim)
         {
-            item.IdleUp();
-        }
-    }
-
-    void IdleDown()
-    {
-        foreach (var item in spritesheetsAnim)
-        {
-            item.IdleDown();
-        }
-    }
-
-    void IdleLeft()
-    {
-        foreach (var item in spritesheetsAnim)
-        {
-            item.IdleLeft();
-        }
-    }
-
-    void IdleRight()
-    {
-        foreach (var item in spritesheetsAnim)
-        {
-            item.IdleRight();
+            item.Idle();
         }
     }
 

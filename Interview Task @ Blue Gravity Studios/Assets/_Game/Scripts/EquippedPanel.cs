@@ -7,33 +7,32 @@ public class EquippedPanel : SimplePanel
 {
     [SerializeField] PlayerBelongings playerBelongings;
 
-    [SerializeField] Image[] equipmentImages;
+    [SerializeField] Image equipmentImage;
+    [SerializeField] GameObject equipmentItem;
 
-    public void OnEquipmentUpdated(Purchasable[] equipment)
+    private void Start()
     {
-        for (int i = 0; i < equipmentImages.Length; ++i)
-        {
-            if (equipment[i] != null)
-            {
-                equipmentImages[i].sprite = equipment[i].SpriteRenderer.sprite;
-                equipmentImages[i].color = equipment[i].SpriteRenderer.color;
-                equipmentImages[i].enabled = true;
-            }
-            else
-            {
-                equipmentImages[i].sprite = null;
-                equipmentImages[i].color = Color.white;
-                equipmentImages[i].enabled = false;
-            }
-        }
+        OnEquipmentUpdated(null);
     }
 
-    private void OnEnable()
+    public void OnEquipmentUpdated(Purchasable equipment)
+    {
+        if (equipment != null)
+        {
+            equipmentItem.SetActive(true);
+            equipmentImage.sprite = equipment.SpriteRenderer.sprite;
+            equipmentImage.color = equipment.SpriteRenderer.color;
+        }
+        else
+            equipmentItem.SetActive(false);
+    }
+
+    void OnEnable()
     {
         playerBelongings.onEquipmentChanged += OnEquipmentUpdated;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         playerBelongings.onEquipmentChanged -= OnEquipmentUpdated;
     }

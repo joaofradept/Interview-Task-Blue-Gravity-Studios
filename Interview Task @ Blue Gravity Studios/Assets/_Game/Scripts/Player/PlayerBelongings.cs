@@ -9,21 +9,21 @@ public class PlayerBelongings : MonoBehaviour
     [SerializeField] int backpackItemLimit;
     [SerializeField] Transform equipmentParent;
 
-    Purchasable equippedHat;
-    Purchasable equippedHair;
-    Purchasable equippedBody;
+    Purchasable equipment;
 
     public Inventory<Purchasable> Backpack { get; private set; }
 
     public Action onBackpackChanged;
-    public Action<Purchasable[]> onEquipmentChanged;
+    public Action<Purchasable> onEquipmentChanged;
 
     private void Awake()
     {
+        // Initialize backpack's inventory
         Backpack = new Inventory<Purchasable>
             (initialBackpackItems, backpackItemLimit);
     }
 
+    // Add purchasable to backpack
     public bool AddToBackpack(Purchasable item)
     {
         if (Backpack.AddToList(item))
@@ -36,6 +36,7 @@ public class PlayerBelongings : MonoBehaviour
         return false;
     }
 
+    // Remove purchasable from backpack
     public bool RemoveFromBackpack(Purchasable item)
     {
         if (Backpack.AddToList(item))
@@ -48,22 +49,13 @@ public class PlayerBelongings : MonoBehaviour
         return false;
     }
 
+    // Equip purchasable
     public void EquipPurchasable(Purchasable p)
     {
-        switch (p.Type)
-        {
-            case Purchasable.WearType.HAT:
-                equippedHat = Instantiate(p, equipmentParent);
-                break;
-            case Purchasable.WearType.HAIR:
-                equippedHair = Instantiate(p, equipmentParent);
-                break;
-            case Purchasable.WearType.BODY:
-                equippedBody = Instantiate(p, equipmentParent);
-                break;
-        }
+        if (equipment) Destroy(equipment.gameObject);
 
-        onEquipmentChanged?.Invoke(new Purchasable[3]
-        { equippedHat, equippedHair, equippedBody });
+        equipment = Instantiate(p, equipmentParent);
+
+        onEquipmentChanged?.Invoke(equipment);
     }
 }
