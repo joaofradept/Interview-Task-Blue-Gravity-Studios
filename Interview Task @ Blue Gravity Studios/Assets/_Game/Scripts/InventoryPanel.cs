@@ -90,4 +90,13 @@ public class InventoryPanel : SimplePanel
             loadedUIItems.Add(UIItem);
         }
     }
+
+    // Called in the Inspector (See gameobject 'Equip Button')
+    public void EquipCurrentPurchasable()
+    {
+        Purchasable selectedItem
+            = playerBelongings.Backpack.List[currentSelectionIndex];
+
+        playerBelongings.EquipPurchasable(selectedItem);
+    }
 }

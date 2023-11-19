@@ -17,16 +17,6 @@ public class Interactable : MonoBehaviour, IInteractable
     {
     }
 
-    public virtual void OnInteractableStay()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public virtual void OnInteractStay(Player p)
-    {
-        throw new System.NotImplementedException();
-    }
-
     public virtual void OnInteractStop()
     {
         throw new System.NotImplementedException();

@@ -8,11 +8,7 @@ public interface IInteractable
 
     void OnInteractableLost();
 
-    void OnInteractableStay();
-
     void OnInteract(Player p);
-
-    void OnInteractStay(Player p);
 
     void OnInteractStop();
 }

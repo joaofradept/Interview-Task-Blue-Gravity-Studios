@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 477577694599821435}
   - component: {fileID: 477577694599821434}
   - component: {fileID: 477577694599821433}
-  - component: {fileID: -870627475714390243}
+  - component: {fileID: 2288342435916499663}
   m_Layer: 0
   m_Name: Hat 1
   m_TagString: Untagged
@@ -102,23 +102,26 @@ MonoBehaviour:
   description: A very cool hat.
   marketValue: 10
   type: 0
---- !u!95 &-870627475714390243
-Animator:
-  serializedVersion: 4
+--- !u!114 &2288342435916499663
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477577694599821428}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 1b587895cb06baf4e8827281e19bd276, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f8f177d12ec9854f833926079137fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteName: char_a_p1_5hat_pfht_v04
+  timeBetweenSprites: 0.1
+  spriteRenderer: {fileID: 477577694599821434}
+  sWalkUpAnimIndexes: 40,41,42,43,44,45
+  sWalkDownAnimIndexes: 32,33,34,35,36,37
+  sWalkLeftAnimIndexes: 56,57,58,59,60,61
+  sWalkRightAnimIndexes: 48,49,50,51,52,53
+  sIdleUpAnimIndexes: 8
+  sIdleDownAnimIndexes: 0
+  sIdleLeftAnimIndexes: 24
+  sIdleRightAnimIndexes: 16
