@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         movementInput.x = Input.GetAxisRaw("Horizontal");
         movementInput.y = Input.GetAxisRaw("Vertical");
 
-        if (movementInput.x != 0)
+        if (movementInput.x != 0 && movementInput.y == 0)
         {
             // Set movement in X axis
             movement.x = movementInput.x;
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
             else
                 WalkLeft();
         }
-        if (movementInput.y != 0)
+        if (movementInput.y != 0 && movementInput.x == 0)
         {
             // Set movement in Y axis
             movement.y = movementInput.y;

@@ -96,6 +96,8 @@ public class SpritesheetAnimator : MonoBehaviour
         // Start with Idle
         Idle();
 
+        StopAllCoroutines();
+
         // Start animating
         StartCoroutine(Animation_SpriteRenderer());
     }
@@ -114,12 +116,10 @@ public class SpritesheetAnimator : MonoBehaviour
             spriteRenderer.sprite = currentSpriteGroup[currentAnimationIndex];
 
             // Wait specified time
-            yield return new WaitForSeconds(time);
+            yield return new WaitForSeconds(timeBetweenSprites);
 
             // Go to next sprite
             currentAnimationIndex++;
         }
     }
-
-    static float time;
 }
