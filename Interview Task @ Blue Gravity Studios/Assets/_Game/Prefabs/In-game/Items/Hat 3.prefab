@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 477577694599821433, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
       propertyPath: marketValue
-      value: 6
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 477577694599821433, guid: 4bd589cf11fbb834bac8a719d6d97665, type: 3}
       propertyPath: initialMarketValue

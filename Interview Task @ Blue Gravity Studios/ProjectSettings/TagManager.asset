@@ -53,9 +53,9 @@ TagManager:
   - name: Objects
     uniqueID: 4212392861
     locked: 0
-  - name: In-Game UI
-    uniqueID: 4008695659
-    locked: 0
   - name: Player Front
     uniqueID: 4028289037
+    locked: 0
+  - name: In-Game UI
+    uniqueID: 4008695659
     locked: 0

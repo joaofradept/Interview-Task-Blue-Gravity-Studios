@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -896386727
-  m_SortingLayer: 3
+  m_SortingLayerID: -266678259
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: -66818895, guid: 9fadc2aaa55e2f04dbe0c5d09c0ca5ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -100,8 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Hat 1
   description: A very cool hat.
-  marketValue: 10
-  wearType: 0
+  marketValue: 15
 --- !u!114 &2288342435916499663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +116,7 @@ MonoBehaviour:
   spriteName: char_a_p1_5hat_pfht_v04
   timeBetweenSprites: 0.1
   spriteRenderer: {fileID: 477577694599821434}
+  spriteRenderer_2: {fileID: 0}
   sWalkUpAnimIndexes: 40,41,42,43,44,45
   sWalkDownAnimIndexes: 32,33,34,35,36,37
   sWalkLeftAnimIndexes: 56,57,58,59,60,61
